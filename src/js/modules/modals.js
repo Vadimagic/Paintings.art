@@ -4,11 +4,9 @@ const modals = () => {
 		const trigger = document.querySelectorAll(triggerSelector),
 				modal = document.querySelector(modalSelector),
 				close = document.querySelector(closeSelector),
-				windows = document.querySelectorAll('[data-modal'),
-				scroll = calcScroll();
+				windows = document.querySelectorAll('[data-modal');
 
 		trigger.forEach(item => {
-			console.log(scroll)
 			item.addEventListener("click", (e)=> {
 				if (e.target) {
 					e.preventDefault();
@@ -19,14 +17,11 @@ const modals = () => {
 				})
 	
 				modal.style.display = "block";
-				document.body.classList.add('modal-open');
-				document.body.style.marginRight = `${scroll}px`;
 			});
 		})
 
 		close.addEventListener('click', () => {
 			modal.style.display = "none"
-			document.body.classList.remove('modal-open')
 		});
 
 		modal.addEventListener('click', (e) => {
@@ -37,25 +32,32 @@ const modals = () => {
 				})
 
 				modal.style.display = "none"
-				document.body.classList.remove('modal-open')
 			}
 		})
 	}
 
-	function calcScroll() {
-		let div = document.createElement('div')
+	function showModalByTime(selector, time) {
+		
+		setTimeout(() => {
+			let display;
+			document.querySelectorAll('[data-modal]').forEach((item) => {
+				if (getComputedStyle(item).display !== 'none') {
+					display = "block"
+				}
+			})
 
-		div.style.cssText = "width: 50px; height: 50px; overflowY: scroll; visibility: hidden";
-
-		document.body.appendChild(div)
-		let scrollWidth = div.offsetWidth - div.clientWidth;
-		div.remove();
-
-		return scrollWidth
+			if (!display) {
+				document.querySelector(selector).style.display = "block"
+				document.querySelector(selector).classList.add('modal-open')
+			}
+			
+		}, time)
 	}
 
 	bindModal('.button-design', '.popup-design', '.popup-design .popup-close');
 	bindModal('.button-consultation', '.popup-consultation', '.popup-consultation .popup-close');
+
+	showModalByTime('.popup-consultation', 60000)
 };
 
 export default modals;

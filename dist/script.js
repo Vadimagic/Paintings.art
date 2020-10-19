@@ -959,10 +959,8 @@ var modals = function modals() {
     var trigger = document.querySelectorAll(triggerSelector),
         modal = document.querySelector(modalSelector),
         close = document.querySelector(closeSelector),
-        windows = document.querySelectorAll('[data-modal'),
-        scroll = calcScroll();
+        windows = document.querySelectorAll('[data-modal');
     trigger.forEach(function (item) {
-      console.log(scroll);
       item.addEventListener("click", function (e) {
         if (e.target) {
           e.preventDefault();
@@ -972,13 +970,10 @@ var modals = function modals() {
           item.style.display = 'none';
         });
         modal.style.display = "block";
-        document.body.classList.add('modal-open');
-        document.body.style.marginRight = "".concat(scroll, "px");
       });
     });
     close.addEventListener('click', function () {
       modal.style.display = "none";
-      document.body.classList.remove('modal-open');
     });
     modal.addEventListener('click', function (e) {
       if (e.target === modal && closeClickOverlay) {
@@ -986,22 +981,29 @@ var modals = function modals() {
           item.style.display = 'none';
         });
         modal.style.display = "none";
-        document.body.classList.remove('modal-open');
       }
     });
   }
 
-  function calcScroll() {
-    var div = document.createElement('div');
-    div.style.cssText = "width: 50px; height: 50px; overflowY: scroll; visibility: hidden";
-    document.body.appendChild(div);
-    var scrollWidth = div.offsetWidth - div.clientWidth;
-    div.remove();
-    return scrollWidth;
+  function showModalByTime(selector, time) {
+    setTimeout(function () {
+      var display;
+      document.querySelectorAll('[data-modal]').forEach(function (item) {
+        if (getComputedStyle(item).display !== 'none') {
+          display = "block";
+        }
+      });
+
+      if (!display) {
+        document.querySelector(selector).style.display = "block";
+        document.querySelector(selector).classList.add('modal-open');
+      }
+    }, time);
   }
 
   bindModal('.button-design', '.popup-design', '.popup-design .popup-close');
   bindModal('.button-consultation', '.popup-consultation', '.popup-consultation .popup-close');
+  showModalByTime('.popup-consultation', 60000);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (modals);
