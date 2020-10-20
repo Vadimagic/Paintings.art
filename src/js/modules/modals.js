@@ -1,13 +1,14 @@
 const modals = () => {
-	function bindModal(triggerSelector, modalSelector, closeSelector, closeClickOverlay = true) {
+	let btnPressed = false;
+
+	function bindModal(triggerSelector, modalSelector, closeSelector, destroy = false) {
 
 		const trigger = document.querySelectorAll(triggerSelector),
 				modal = document.querySelector(modalSelector),
 				close = document.querySelector(closeSelector),
 				windows = document.querySelectorAll('[data-modal'),
-				scroll = calcScroll();
-
-		console.log(scroll)
+				scroll = calcScroll(),
+				gift = document.querySelector('.fixed-gift');
 
 		trigger.forEach(item => {
 			item.addEventListener("click", (e)=> {
@@ -15,13 +16,21 @@ const modals = () => {
 					e.preventDefault();
 				}
 
+				if (destroy) {
+					item.remove();
+				}
+
+				btnPressed = true;
+
 				windows.forEach(item => {
 					item.style.display = 'none'
+					item.classList.add("animated", "fadeIn")
 				})
 	
 				modal.style.display = "block";
 				document.body.style.overflow = "hidden"
 				document.body.style.marginRight = `${scroll}px`;
+				gift.style.marginRight = `${scroll}px`;
 			});
 		})
 
@@ -29,10 +38,11 @@ const modals = () => {
 			modal.style.display = "none"
 			document.body.style.overflow = ""
 			document.body.style.marginRight = `0px`;
+			gift.style.marginRight = `0px`;
 		});
 
 		modal.addEventListener('click', (e) => {
-			if (e.target === modal && closeClickOverlay) {
+			if (e.target === modal) {
 
 				windows.forEach(item => {
 					item.style.display = 'none'
@@ -41,6 +51,7 @@ const modals = () => {
 				modal.style.display = "none"
 				document.body.style.overflow = ""
 				document.body.style.marginRight = `0px`;
+				gift.style.marginRight = `0px`;
 			}
 		})
 	}
@@ -77,10 +88,24 @@ const modals = () => {
 		return scrollWidth
 	}
 
+	function openByScroll(selector) {
+		window.addEventListener('scroll', () => {
+			const scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight) - 1
+
+			if (!btnPressed && (window.pageYOffset + document.documentElement.clientHeight >= scrollHeight)) {
+				btnPressed = true;
+				document.querySelector(selector).style.display = 'block'
+			}
+		})
+	}
+
 	bindModal('.button-design', '.popup-design', '.popup-design .popup-close');
 	bindModal('.button-consultation', '.popup-consultation', '.popup-consultation .popup-close');
+	bindModal('.fixed-gift', '.popup-gift', '.popup-gift .popup-close', true);
 
-	showModalByTime('.popup-consultation', 600)
+	showModalByTime('.popup-gift', 600000)
+
+	openByScroll('.popup-consultation')
 };
 
 export default modals;
