@@ -959,7 +959,9 @@ var modals = function modals() {
     var trigger = document.querySelectorAll(triggerSelector),
         modal = document.querySelector(modalSelector),
         close = document.querySelector(closeSelector),
-        windows = document.querySelectorAll('[data-modal');
+        windows = document.querySelectorAll('[data-modal'),
+        scroll = calcScroll();
+    console.log(scroll);
     trigger.forEach(function (item) {
       item.addEventListener("click", function (e) {
         if (e.target) {
@@ -970,10 +972,14 @@ var modals = function modals() {
           item.style.display = 'none';
         });
         modal.style.display = "block";
+        document.body.style.overflow = "hidden";
+        document.body.style.marginRight = "".concat(scroll, "px");
       });
     });
     close.addEventListener('click', function () {
       modal.style.display = "none";
+      document.body.style.overflow = "";
+      document.body.style.marginRight = "0px";
     });
     modal.addEventListener('click', function (e) {
       if (e.target === modal && closeClickOverlay) {
@@ -981,11 +987,14 @@ var modals = function modals() {
           item.style.display = 'none';
         });
         modal.style.display = "none";
+        document.body.style.overflow = "";
+        document.body.style.marginRight = "0px";
       }
     });
   }
 
   function showModalByTime(selector, time) {
+    var scroll = calcScroll();
     setTimeout(function () {
       var display;
       document.querySelectorAll('[data-modal]').forEach(function (item) {
@@ -996,14 +1005,24 @@ var modals = function modals() {
 
       if (!display) {
         document.querySelector(selector).style.display = "block";
-        document.querySelector(selector).classList.add('modal-open');
+        document.body.style.overflow = "hidden";
+        document.body.style.marginRight = "".concat(scroll, "px");
       }
     }, time);
   }
 
+  function calcScroll() {
+    var div = document.createElement('div');
+    div.style.cssText = "width: 50px; height: 50px; overflow-y: scroll; visibility: hidden";
+    document.body.appendChild(div);
+    var scrollWidth = div.offsetWidth - div.clientWidth;
+    div.remove();
+    return scrollWidth;
+  }
+
   bindModal('.button-design', '.popup-design', '.popup-design .popup-close');
   bindModal('.button-consultation', '.popup-consultation', '.popup-consultation .popup-close');
-  showModalByTime('.popup-consultation', 60000);
+  showModalByTime('.popup-consultation', 600);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (modals);
