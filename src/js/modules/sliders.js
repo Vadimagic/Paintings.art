@@ -31,7 +31,7 @@ const sliders = (slides, dir, prev, next) => {
 		if (dir == "ver") {
 			paused = setInterval(() => {
 				changeSlides(1)
-				items[slideIndex - 1].classList.add('slideInDown');
+				items[slideIndex - 1].classList.add('fadeInDown');
 				}, 5000)
 		} else {
 			paused = setInterval(() => {

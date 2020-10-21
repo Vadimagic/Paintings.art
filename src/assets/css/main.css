@@ -365,6 +365,9 @@ h4 {
   padding: 1.5rem 4rem;
   margin-bottom: 7rem;
 }
+.main-slider {
+	overflow: hidden;
+}
 .main-slider-btn {
   position: absolute;
   top: 50%;
@@ -1266,6 +1269,9 @@ h4 {
   border-radius: 4px;
   transform: translateX(-50%) !important;
   padding: 3rem 6rem 4rem 6rem;
+}
+.status {
+	text-align: center;
 }
 @media (max-width: 1399px) {
   .paints {
