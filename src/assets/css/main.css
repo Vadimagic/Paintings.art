@@ -211,7 +211,16 @@ h4 {
   /* Making it beautiful */
 
 }
+
+.file_upload {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	flex-direction: row-reverse;
+}
+
 .main .file_upload {
+	
   position: relative;
   overflow: hidden;
   font-size: 1em;
