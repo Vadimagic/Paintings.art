@@ -211,7 +211,16 @@ h4 {
   /* Making it beautiful */
 
 }
+
+.file_upload {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	flex-direction: row-reverse;
+}
+
 .main .file_upload {
+	
   position: relative;
   overflow: hidden;
   font-size: 1em;
@@ -355,6 +364,9 @@ h4 {
 .main .button-order {
   padding: 1.5rem 4rem;
   margin-bottom: 7rem;
+}
+.main-slider {
+	overflow: hidden;
 }
 .main-slider-btn {
   position: absolute;
@@ -836,6 +848,7 @@ h4 {
 .feedback {
   background-color: #f7e7e6;
   padding: 9rem 0;
+  overflow: hidden;
 }
 .feedback-slider-item {
   padding-bottom: 5rem;
@@ -1257,6 +1270,9 @@ h4 {
   border-radius: 4px;
   transform: translateX(-50%) !important;
   padding: 3rem 6rem 4rem 6rem;
+}
+.status {
+	text-align: center;
 }
 @media (max-width: 1399px) {
   .paints {
@@ -1683,7 +1699,7 @@ h4 {
     padding: 5rem 0;
   }
   .feedback {
-    padding: 5rem 0;
+	 padding: 5rem 0;
   }
   .feedback .main-next-btn {
     right: -1rem;

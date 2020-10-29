@@ -848,6 +848,7 @@ h4 {
 .feedback {
   background-color: #f7e7e6;
   padding: 9rem 0;
+  overflow: hidden;
 }
 .feedback-slider-item {
   padding-bottom: 5rem;
@@ -1698,7 +1699,7 @@ h4 {
     padding: 5rem 0;
   }
   .feedback {
-    padding: 5rem 0;
+	 padding: 5rem 0;
   }
   .feedback .main-next-btn {
     right: -1rem;
