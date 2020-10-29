@@ -26,11 +26,7 @@ const mask = (selector) => {
 		}
 
 		this.value = matrix.replace(/./g, a => {
-			return /[_\d]/.test(a) && i < val.length 
-				? val.charAt(i++) 
-				: i >= val.length 
-					? '' 
-					: a;
+			return /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? '' : a;
 		})
 
 		if (event.type === 'blur') {
@@ -41,6 +37,14 @@ const mask = (selector) => {
 			setCursorPosition(this.value.length, this);
 		}
 	}
+
+	let inputs = document.querySelectorAll(selector);
+
+	inputs.forEach(input => {
+		input.addEventListener('input', createMask);
+		input.addEventListener('focus', createMask);
+		input.addEventListener('blur', createMask);
+	})
 };
 
 export default mask;
