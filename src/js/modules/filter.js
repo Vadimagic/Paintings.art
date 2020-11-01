@@ -18,20 +18,20 @@ const filter = () => {
 
 	const typeFitler = (markType) => {
 		markAll.forEach(mark => {
-			mark.getElementsByClassName.display = 'none';
+			mark.style.display = 'none';
 			mark.classList.remove('animated', 'fadeIn');
 		});
 
-		no.getElementsByClassName.display = 'none';
+		no.style.display = 'none';
 		no.classList.remove('animated', 'fadeIn');
 
 		if (markType) {
 			markType.forEach(mark => {
-				mark.getElementsByClassName.display = 'block';
+				mark.style.display = 'block';
 				mark.classList.add('animated', 'fadeIn');
 			});
 		} else {
-			no.getElementsByClassName.display = 'block';
+			no.style.display = 'block';
 			no.classList.add('animated', 'fadeIn');
 		}
 	};
