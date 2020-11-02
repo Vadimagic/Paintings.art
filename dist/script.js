@@ -4298,7 +4298,7 @@ document.addEventListener("DOMContentLoaded", function () {
   Object(_modules_filter__WEBPACK_IMPORTED_MODULE_7__["default"])();
   Object(_modules_puctureSize__WEBPACK_IMPORTED_MODULE_8__["default"])('.sizes-block');
   Object(_modules_accordion__WEBPACK_IMPORTED_MODULE_9__["default"])('.accordion-heading');
-  Object(_modules_burger__WEBPACK_IMPORTED_MODULE_10__["default"])('.burger-menu', 'burger');
+  Object(_modules_burger__WEBPACK_IMPORTED_MODULE_10__["default"])('.burger', '.burger-menu');
 });
 
 /***/ }),
@@ -4349,11 +4349,14 @@ var burger = function burger(burgerSelector, menuSelector) {
   var burgerElem = document.querySelector(burgerSelector),
       menuElem = document.querySelector(menuSelector);
   menuElem.style.display = 'none';
+  menuElem.classList.add('animated', 'fadeInDown');
   burgerElem.addEventListener('click', function () {
-    if (menuElem.style.display == 'none' && window.screen.availWidth <= 992) {
+    if (menuElem.style.display === 'none' && window.screen.availWidth <= 992) {
       menuElem.style.display = 'block';
     } else {
-      menuElem.style.display = 'none';
+      setTimeout(function () {
+        return menuElem.style.display = 'none';
+      }, 400);
     }
   });
   window.addEventListener('resize', function () {

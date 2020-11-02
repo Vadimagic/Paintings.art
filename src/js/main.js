@@ -25,5 +25,5 @@ document.addEventListener("DOMContentLoaded", () => {
 	filter();
 	pictureSize('.sizes-block');
 	accordion('.accordion-heading');
-	burger('.burger-menu', 'burger');
+	burger('.burger', '.burger-menu');
 })

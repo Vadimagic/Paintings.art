@@ -3,12 +3,13 @@ const burger = (burgerSelector, menuSelector) => {
 			menuElem = document.querySelector(menuSelector);
 
 	menuElem.style.display = 'none';
+	menuElem.classList.add('animated', 'fadeInDown');
 
 	burgerElem.addEventListener('click', () => {
-		if (menuElem.style.display == 'none' && window.screen.availWidth <= 992) {
+		if (menuElem.style.display === 'none' && window.screen.availWidth <= 992) {
 			menuElem.style.display = 'block';
 		} else {
-			menuElem.style.display = 'none';
+			setTimeout(() => menuElem.style.display = 'none', 400)
 		}
 	});
 
