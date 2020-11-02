@@ -8,7 +8,7 @@ import calc from './modules/calc';
 import filter from './modules/filter';
 import pictureSize from './modules/puctureSize';
 
-window.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
 	'use strict';
 
 	modals();

@@ -3,19 +3,21 @@ const pictureSize = (imgSelector) => {
 
 	blocks.forEach(block => {
 		block.addEventListener('mouseover', () => showImg(block))
-		block.addEventListener('mouseleave', () => hideImg(block))
+		block.addEventListener('mouseout', () => hideImg(block))
 	})
 
 	function showImg (block) {
 		const img = block.querySelector('img');
+		img.classList.add('animated', 'fadeIn');
 		img.src = img.src.slice(0, -4) + '-1.png';
-		block.querySelectorAll('p').forEach(item => item.style.display = 'none');
+		block.querySelectorAll('p:not(.sizes-hit)').forEach(p => p.style.display = 'none');
 	}
 
 	function hideImg (block) {
 		const img = block.querySelector('img');
+		img.classList.remove('animated', 'fadeIn');
 		img.src = img.src.slice(0, -6) + '.png';
-		block.querySelectorAll('p').forEach(item => item.style.display = 'block');
+		block.querySelectorAll('p').forEach(p => p.style.display = 'block');
 	}
 };
 

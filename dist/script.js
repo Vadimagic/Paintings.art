@@ -4279,7 +4279,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-window.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
   'use strict';
 
   Object(_modules_modals__WEBPACK_IMPORTED_MODULE_1__["default"])();
@@ -4794,24 +4794,26 @@ var pictureSize = function pictureSize(imgSelector) {
     block.addEventListener('mouseover', function () {
       return showImg(block);
     });
-    block.addEventListener('mouseleave', function () {
+    block.addEventListener('mouseout', function () {
       return hideImg(block);
     });
   });
 
   function showImg(block) {
     var img = block.querySelector('img');
+    img.classList.add('animated', 'fadeIn');
     img.src = img.src.slice(0, -4) + '-1.png';
-    block.querySelectorAll('p').forEach(function (item) {
-      return item.style.display = 'none';
+    block.querySelectorAll('p:not(.sizes-hit)').forEach(function (p) {
+      return p.style.display = 'none';
     });
   }
 
   function hideImg(block) {
     var img = block.querySelector('img');
+    img.classList.remove('animated', 'fadeIn');
     img.src = img.src.slice(0, -6) + '.png';
-    block.querySelectorAll('p').forEach(function (item) {
-      return item.style.display = 'block';
+    block.querySelectorAll('p').forEach(function (p) {
+      return p.style.display = 'block';
     });
   }
 };
