@@ -6,6 +6,8 @@ const burger = (burgerSelector, menuSelector) => {
 	menuElem.classList.add('animated', 'fadeInDown');
 
 	burgerElem.addEventListener('click', () => {
+		console.log(window.screen.availWidth)
+		console.log(document.querySelector('body').style)
 		if (menuElem.style.display === 'none' && window.screen.availWidth <= 992) {
 			menuElem.style.display = 'block';
 		} else {
