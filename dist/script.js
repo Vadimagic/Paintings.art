@@ -4272,6 +4272,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_puctureSize__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/puctureSize */ "./src/js/modules/puctureSize.js");
 /* harmony import */ var _modules_accordion__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/accordion */ "./src/js/modules/accordion.js");
 /* harmony import */ var _modules_burger__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/burger */ "./src/js/modules/burger.js");
+/* harmony import */ var _modules_scrolling__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./modules/scrolling */ "./src/js/modules/scrolling.js");
+
 
 
 
@@ -4299,6 +4301,7 @@ document.addEventListener("DOMContentLoaded", function () {
   Object(_modules_puctureSize__WEBPACK_IMPORTED_MODULE_8__["default"])('.sizes-block');
   Object(_modules_accordion__WEBPACK_IMPORTED_MODULE_9__["default"])('.accordion-heading');
   Object(_modules_burger__WEBPACK_IMPORTED_MODULE_10__["default"])('.burger', '.burger-menu');
+  Object(_modules_scrolling__WEBPACK_IMPORTED_MODULE_11__["default"])();
 });
 
 /***/ }),
@@ -4892,6 +4895,32 @@ var pictureSize = function pictureSize(imgSelector) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (pictureSize);
+
+/***/ }),
+
+/***/ "./src/js/modules/scrolling.js":
+/*!*************************************!*\
+  !*** ./src/js/modules/scrolling.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var scrolling = function scrolling() {
+  window.addEventListener('scroll', function () {
+    if (document.documentElement.scrollTop > 1650) {
+      while (document.documentElement.scrollTop > 0) {
+        console.log(document.documentElement.scrollTop);
+        setTimeout(function () {
+          return document.documentElement.scrollTop = document.documentElement.scrollTop - 1;
+        }, 100);
+      }
+    }
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (scrolling);
 
 /***/ }),
 
