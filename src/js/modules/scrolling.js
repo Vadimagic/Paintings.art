@@ -1,10 +1,13 @@
-const scrolling = () => {
+const scrolling = (upSelector) => {
+	const upElem = document.querySelector(upSelector);
+
 	window.addEventListener('scroll', () => {
 		if (document.documentElement.scrollTop > 1650) {
-			while (document.documentElement.scrollTop > 0) {
-				console.log(document.documentElement.scrollTop)
-				setTimeout(() => document.documentElement.scrollTop = document.documentElement.scrollTop - 1, 100);
-			}
+			upElem.classList.remove('fadeOut');
+			upElem.classList.add('animated', 'fadeIn');
+		} else {
+			upElem.classList.remove('fadeIn');
+			upElem.classList.add('fadeOut');
 		}
 	});
 };

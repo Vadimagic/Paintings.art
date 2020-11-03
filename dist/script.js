@@ -4301,7 +4301,7 @@ document.addEventListener("DOMContentLoaded", function () {
   Object(_modules_puctureSize__WEBPACK_IMPORTED_MODULE_8__["default"])('.sizes-block');
   Object(_modules_accordion__WEBPACK_IMPORTED_MODULE_9__["default"])('.accordion-heading');
   Object(_modules_burger__WEBPACK_IMPORTED_MODULE_10__["default"])('.burger', '.burger-menu');
-  Object(_modules_scrolling__WEBPACK_IMPORTED_MODULE_11__["default"])();
+  Object(_modules_scrolling__WEBPACK_IMPORTED_MODULE_11__["default"])('.pageup');
 });
 
 /***/ }),
@@ -4907,15 +4907,15 @@ var pictureSize = function pictureSize(imgSelector) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var scrolling = function scrolling() {
+var scrolling = function scrolling(upSelector) {
+  var upElem = document.querySelector(upSelector);
   window.addEventListener('scroll', function () {
     if (document.documentElement.scrollTop > 1650) {
-      while (document.documentElement.scrollTop > 0) {
-        console.log(document.documentElement.scrollTop);
-        setTimeout(function () {
-          return document.documentElement.scrollTop = document.documentElement.scrollTop - 1;
-        }, 100);
-      }
+      upElem.classList.remove('fadeOut');
+      upElem.classList.add('animated', 'fadeIn');
+    } else {
+      upElem.classList.remove('fadeIn');
+      upElem.classList.add('fadeOut');
     }
   });
 };
